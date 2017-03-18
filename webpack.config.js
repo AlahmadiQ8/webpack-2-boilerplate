@@ -3,6 +3,7 @@ const glob = require('glob');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
@@ -17,12 +18,8 @@ var common = {
   },
 
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
-  },
-
-  devServer: {
-    contentBase: __dirname,
   },
 
   module: {
@@ -34,6 +31,13 @@ var common = {
       },
     ]    
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: path.join(__dirname, 'src/index.html'),
+    })
+  ]
 
 };
 
@@ -69,7 +73,7 @@ switch(process.env.npm_lifecycle_event) {
           }),
           new ExtractTextPlugin("styles.css"),
           new PurifyCSSPlugin({
-            paths: glob.sync(path.join(__dirname, 'index.html')),
+            paths: glob.sync(path.join(__dirname, 'src', 'app', 'index.js')),
           })
         ]
       }
@@ -85,40 +89,28 @@ switch(process.env.npm_lifecycle_event) {
           rules: [
             {
               test: /\.css$/,
-              use: "css-loader"
-            }
+              use: ["style-loader", "css-loader"]
+            },
           ]
         },
         devServer: {
-          // Enable history API fallback so HTML5 History API based
-          // routing works. This is a good default that will come
-          // in handy in more complicated setups.
           historyApiFallback: true,
-
-          // Unlike the cli flag, this doesn't set
-          // HotModuleReplacementPlugin!
+          contentBase: path.join(__dirname, 'src'),
           hot: true,
           inline: true,
-
-          // Display only errors to reduce the amount of output.
           stats: 'errors-only',
-
-          // Parse host and port from env to allow customization.
-          //
-          // If you use Vagrant or Cloud9, set
-          // host: options.host || '0.0.0.0';
-          //
-          // 0.0.0.0 is available to all network devices
-          // unlike default `localhost`.
+          overlay: {
+            errors: true,
+            warnings: true,
+          },
           host: process.env.HOST, // Defaults to `localhost`
           port: process.env.PORT // Defaults to 8080
         },
         plugins: [
-          // Enable multi-pass compilation for enhanced performance
-          // in larger projects. Good default.
           new webpack.HotModuleReplacementPlugin({
             multiStep: true
-          })
+          }),
+          new webpack.NamedModulesPlugin(),
         ]
       }
     );

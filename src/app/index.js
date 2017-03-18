@@ -1,14 +1,13 @@
-import css from "../styles/index.css";
+import "../styles/index.css";
 
-import _ from 'lodash';
 
 function component () {
-  var element = document.createElement('div');
+  var element = document.createElement('h1');
 
-  /* lodash is required for the next line to work */
-  element.innerHTML = _.join(['Hello','webpack'], ' ');
+   // lodash is required for the next line to work 
+  element.innerHTML = 'osfmg it working';
 
   return element;
 }
 
-document.body.appendChild(component());
+document.body.insertBefore(component(), document.getElementById('root'));

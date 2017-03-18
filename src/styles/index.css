@@ -1,7 +1,17 @@
+body {
+  background-color: green;
+}
+
 div {
   color: red;
 }
 
 .omg {
+  color: blue;
+}
+
+h2, h1 {
   color: red;
 }
+
+
