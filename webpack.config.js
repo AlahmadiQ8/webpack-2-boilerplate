@@ -14,7 +14,8 @@ var common = {
   context: path.resolve(__dirname, "src"),
 
   entry: {
-    app: './app/index.js'
+    app: './app/index.js',
+    style: './styles/index.scss'
   },
 
   output: {
@@ -53,12 +54,13 @@ switch(process.env.npm_lifecycle_event) {
         module: {
           rules: [
             {
-              test: /\.css$/,
+              test: /\.scss$/,
               use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: "css-loader"
-              })
-            }
+                fallback: 'style-loader',
+                use: ['css-loader', 'sass-loader']
+              }),
+              include: path.join(__dirname, 'src', 'styles', 'index.scss'),
+            },
           ]
         },
         plugins: [
@@ -73,7 +75,7 @@ switch(process.env.npm_lifecycle_event) {
           }),
           new ExtractTextPlugin("styles.css"),
           new PurifyCSSPlugin({
-            paths: glob.sync(path.join(__dirname, 'src', 'app', 'index.js')),
+            paths: glob.sync(path.join(__dirname, 'src', '*.html')),
           })
         ]
       }
@@ -88,8 +90,9 @@ switch(process.env.npm_lifecycle_event) {
         module: {
           rules: [
             {
-              test: /\.css$/,
-              use: ["style-loader", "css-loader"]
+              test: /\.scss$/,
+              use: ["style-loader", "css-loader", 'sass-loader'],
+              include: path.join(__dirname, 'src', 'styles', 'index.scss'),
             },
           ]
         },

@@ -1,6 +1,3 @@
-import "../styles/index.css";
-
-
 function component () {
   var element = document.createElement('h1');
 
