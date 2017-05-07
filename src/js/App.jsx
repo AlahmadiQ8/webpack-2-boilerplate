@@ -16,7 +16,7 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <h1>OMG</h1>
+        <h1>OMG lalala</h1>
         <h2>{this.state.counter}</h2>
       </div>
     );

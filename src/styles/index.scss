@@ -1,15 +1,19 @@
 $test: #fff;
+$gray : green;
 
 body {
   background-color: $test;
 }
 
 div {
-  color: blue;
+  color: red;
 }
 
 h2, h1 {
-  color: blue;
+  color: red;
+  background-color: $gray;
 }
+
+
 
 

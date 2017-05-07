@@ -8,14 +8,14 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 
+const script = process.env.npm_lifecycle_event; // see package.json scripts
 
 var common = {
 
   context: path.resolve(__dirname, "src"),
 
   entry: {
-    index: './app/index.js',
-    // style: './styles/index.scss'
+    index: './js/index.js',
   },
 
   output: {
@@ -30,39 +30,37 @@ var common = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        }),
+      },
     ]
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: path.join(__dirname, 'src/index.html'),
-    })
+    new ExtractTextPlugin(
+      {
+        filename:  (getPath) => {
+          return getPath('css/[name].css');
+        },
+        disable: script === 'dev',
+      }
+    ),
   ]
-
 };
 
 var config;
 
-switch(process.env.npm_lifecycle_event) {
+switch(script) {
 
   case 'build':
     config = merge(
       common,
       {
         devtool: 'source-map',
-        module: {
-          rules: [
-            {
-              test: /\.scss$/,
-              use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: ['css-loader', 'sass-loader']
-              }),
-              // include: path.join(__dirname, 'src', 'styles', 'index.scss'),
-            },
-          ]
-        },
         plugins: [
           new CleanWebpackPlugin('dist', {
             root: process.cwd()
@@ -73,7 +71,6 @@ switch(process.env.npm_lifecycle_event) {
               drop_console: false,
             }
           }),
-          new ExtractTextPlugin("styles.css"),
           new PurifyCSSPlugin({
             paths: glob.sync(path.join(__dirname, 'src', '*.html')),
             minimize: true,
@@ -88,15 +85,6 @@ switch(process.env.npm_lifecycle_event) {
       common,
       {
         devtool: 'eval-source-map',
-        module: {
-          rules: [
-            {
-              test: /\.scss$/,
-              use: ["style-loader", "css-loader", 'sass-loader'],
-              include: path.join(__dirname, 'src', 'styles', 'index.scss'),
-            },
-          ]
-        },
         devServer: {
           historyApiFallback: true,
           contentBase: path.join(__dirname, 'src'),
@@ -110,12 +98,19 @@ switch(process.env.npm_lifecycle_event) {
           host: process.env.HOST, // Defaults to `localhost`
           port: process.env.PORT // Defaults to 8080
         },
-        plugins: [
-          new webpack.HotModuleReplacementPlugin({
-            // multiStep: true
-          }),
-          new webpack.NamedModulesPlugin(),
-        ]
+        plugins: (() => {
+          const plugins = [
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.NamedModulesPlugin(),
+          ];
+          if (script === 'dev') {
+            plugins.push(new HtmlWebpackPlugin({
+              filename: "index.html",
+              template: path.join(__dirname, 'src/index.html'),
+            }));
+          }
+          return plugins;
+        })(),
       }
     );
 
