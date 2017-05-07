@@ -1,10 +1,9 @@
-function component () {
-  var element = document.createElement('h1');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App.jsx';
+import '../styles/index.scss';
 
-   // lodash is required for the next line to work 
-  element.innerHTML = 'osfmg it working';
-
-  return element;
-}
-
-document.body.insertBefore(component(), document.getElementById('root'));
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);

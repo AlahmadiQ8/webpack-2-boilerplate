@@ -14,8 +14,8 @@ var common = {
   context: path.resolve(__dirname, "src"),
 
   entry: {
-    app: './app/index.js',
-    style: './styles/index.scss'
+    index: './app/index.js',
+    // style: './styles/index.scss'
   },
 
   output: {
@@ -30,7 +30,7 @@ var common = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-    ]    
+    ]
   },
 
   plugins: [
@@ -42,13 +42,13 @@ var common = {
 
 };
 
-var config; 
+var config;
 
 switch(process.env.npm_lifecycle_event) {
 
-  case 'build': 
+  case 'build':
     config = merge(
-      common, 
+      common,
       {
         devtool: 'source-map',
         module: {
@@ -59,7 +59,7 @@ switch(process.env.npm_lifecycle_event) {
                 fallback: 'style-loader',
                 use: ['css-loader', 'sass-loader']
               }),
-              include: path.join(__dirname, 'src', 'styles', 'index.scss'),
+              // include: path.join(__dirname, 'src', 'styles', 'index.scss'),
             },
           ]
         },
@@ -76,15 +76,16 @@ switch(process.env.npm_lifecycle_event) {
           new ExtractTextPlugin("styles.css"),
           new PurifyCSSPlugin({
             paths: glob.sync(path.join(__dirname, 'src', '*.html')),
+            minimize: true,
           })
         ]
       }
     );
     break;
 
-  default: 
+  default:
     config = merge(
-      common, 
+      common,
       {
         devtool: 'eval-source-map',
         module: {
@@ -111,7 +112,7 @@ switch(process.env.npm_lifecycle_event) {
         },
         plugins: [
           new webpack.HotModuleReplacementPlugin({
-            multiStep: true
+            // multiStep: true
           }),
           new webpack.NamedModulesPlugin(),
         ]
