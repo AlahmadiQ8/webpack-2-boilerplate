@@ -17,6 +17,7 @@ var common = {
 
   entry: {
     index: './js/index.js',
+    vendor: ['bootstrap']
   },
 
   output: {
@@ -75,6 +76,11 @@ var common = {
         disable: script === 'dev',
       }
     ),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      Tether: 'tether'
+    })
   ]
 };
 

@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 
+
+const Close = (props) => (
+  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+)
+
 export default class extends Component {
 
   constructor(props) {
@@ -14,10 +21,16 @@ export default class extends Component {
   }
 
   render() {
+    const classes = 'text-center alert rounded-0 my-0 alert-dismissible fade show';
     return (
       <div>
-        <h1>OMG lalala</h1>
-        <h2>{this.state.counter}</h2>
+        <div className={`${classes} alert-danger`}><Close/> Testing this out</div>
+        <div className={`${classes} alert-info`}><Close/> Testing this out</div>
+        <div className={`${classes} alert-success`}><Close/> Testing this out</div>
+
+        <div className='container'>
+          <button className="btn btn-custom ">Test</button>
+        </div>
       </div>
     );
   }
