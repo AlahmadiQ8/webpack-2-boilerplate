@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
+const autoprefixer = require('autoprefixer');
 
 const script = process.env.npm_lifecycle_event; // see package.json scripts
 
@@ -34,9 +35,34 @@ var common = {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
+          use: [{ loader: 'css-loader', options: { importLoaders: 1 } },
+                'postcss-loader',
+                'sass-loader']
         }),
       },
+      {
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.(css|scss)$/,
+          /\.json$/,
+          /\.svg$/
+        ],
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name: 'img/[name].[ext]'
+          }
+        }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'file',
+        query: {
+          name: 'img/[name].[ext]'
+        }
+      }
     ]
   },
 
