@@ -35,8 +35,8 @@ var common = {
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{ loader: 'css-loader', options: { importLoaders: 1 } },
+          fallback: { loader: 'style-loader', options: { sourceMap: true } },
+          use: [{ loader: 'css-loader', options: { importLoaders: 2 } },
                 'postcss-loader',
                 'sass-loader']
         }),
@@ -47,7 +47,8 @@ var common = {
           /\.(js|jsx)$/,
           /\.(css|scss)$/,
           /\.json$/,
-          /\.svg$/
+          /\.svg$/,
+          /\.(ttf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
         ],
         use: {
           loader: 'url-loader',
@@ -59,11 +60,21 @@ var common = {
       },
       {
         test: /\.svg$/,
-        loader: 'file',
+        exclude: /fonts\//,
+        loader: 'file-loader',
         query: {
           name: 'img/[name].[ext]'
         }
-      }
+      },
+      {
+        test: /\.(svg|ttf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        include: /fonts\//,
+        loader: 'file-loader',
+        query: {
+          name: 'fonts/[name].[ext]'
+        }
+      },
+
     ]
   },
 
@@ -92,7 +103,7 @@ switch(script) {
     config = merge(
       common,
       {
-        devtool: 'source-map',
+        devtool: 'inline-source-map',
         plugins: [
           new CleanWebpackPlugin('dist', {
             root: process.cwd()
