@@ -71,8 +71,8 @@ var common = {
         include: /fonts\//,
         loader: 'file-loader',
         query: {
-          name: 'fonts/[name].[ext]'
-        }
+          name: '/css/fonts/[name].[ext]'
+        },
       },
 
     ]
@@ -114,9 +114,18 @@ switch(script) {
               drop_console: false,
             }
           }),
-          new PurifyCSSPlugin({
-            paths: glob.sync(path.join(__dirname, 'src', '*.html')),
-            minimize: true,
+          // new PurifyCSSPlugin({
+          //   paths: glob.sync(path.join(__dirname, 'src', '*.html')),
+          //   minimize: true,
+          // }),
+          new HtmlWebpackPlugin({
+            filename: "index.html",
+            template: path.join(__dirname, 'src/index.html'),
+          }),
+          new webpack.DefinePlugin({
+            "process.env": {
+               NODE_ENV: JSON.stringify("production")
+             }
           })
         ]
       }

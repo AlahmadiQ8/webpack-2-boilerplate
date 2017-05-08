@@ -28,8 +28,10 @@ export default class extends Component {
         <div className={`${classes} alert-info`}><Close/> Testing this out</div>
         <div className={`${classes} alert-success`}><Close/> Testing this out</div>
 
-        <div className='container'>
+        <div className='container mt-3'>
+          <div className="row">Test</div>
           <button className="btn btn-custom ">Test</button>
+          <i className="fa fa-address-book" aria-hidden="true"></i>
         </div>
       </div>
     );
