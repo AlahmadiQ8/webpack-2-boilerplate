@@ -8,6 +8,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const autoprefixer = require('autoprefixer');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const script = process.env.npm_lifecycle_event; // see package.json scripts
 
@@ -95,10 +96,11 @@ var common = {
   ]
 };
 
-var config;
+let config;
 
 switch(script) {
 
+  // yarn build
   case 'build':
     config = merge(
       common,
@@ -132,6 +134,29 @@ switch(script) {
     );
     break;
 
+  // yarn browsersync
+  case 'browsersync':
+    // BrowserSyncPlugin MUST be the first plugin. So er prepend instead
+    const mergePrepend = merge.strategy({ plugins: 'prepend' });
+    config = mergePrepend(
+      common,
+      {
+        plugins: [
+            host: 'localhost',
+            port: 3000,
+            server: { baseDir: ['dist'] },
+            files: "dist/*",
+          }),
+          new HtmlWebpackPlugin({
+            filename: "index.html",
+            template: path.join(__dirname, 'src/index.html'),
+          })
+        ]
+      }
+    );
+    break;
+
+  // yarn dev, yarn dev:watch, yarn dev:compile
   default:
     config = merge(
       common,
@@ -148,7 +173,7 @@ switch(script) {
             warnings: true,
           },
           host: process.env.HOST, // Defaults to `localhost`
-          port: process.env.PORT // Defaults to 8080
+          port: process.env.PORT  // Defaults to 8080
         },
         plugins: (() => {
           const plugins = [
@@ -165,7 +190,6 @@ switch(script) {
         })(),
       }
     );
-
 }
 
 module.exports = config;

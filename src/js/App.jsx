@@ -30,7 +30,7 @@ export default class extends Component {
 
         <div className='container mt-3'>
           <div className="row">Test</div>
-          <button className="btn btn-custom ">Test</button>
+          <button className="btn btn-custom ">omglove </button>
           <i className="fa fa-address-book" aria-hidden="true"></i>
         </div>
       </div>
