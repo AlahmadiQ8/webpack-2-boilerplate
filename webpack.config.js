@@ -142,6 +142,7 @@ switch(script) {
       common,
       {
         plugins: [
+          new BrowserSyncPlugin({
             host: 'localhost',
             port: 3000,
             server: { baseDir: ['dist'] },
