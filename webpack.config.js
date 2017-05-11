@@ -72,7 +72,7 @@ var common = {
         include: /fonts\//,
         loader: 'file-loader',
         query: {
-          name: '/css/fonts/[name].[ext]'
+          name: '/fonts/[name].[ext]'
         },
       },
 
