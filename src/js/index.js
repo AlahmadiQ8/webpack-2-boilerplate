@@ -5,7 +5,7 @@ import App from './App.jsx';
 import logo from '../img/brand-logo.png';
 import logo2 from '../img/vector.svg';
 
-
+require('bootstrap');
 import '../styles/index.scss';
 
 ReactDOM.render(
