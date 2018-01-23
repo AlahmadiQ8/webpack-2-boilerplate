@@ -1096,9 +1096,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap@4.0.0-beta:
-  version "4.0.0-beta"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-beta.tgz#dc5928175d2e71310bc668cf9e05a907211b72a6"
+bootstrap@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
 
 brace-expansion@^1.0.0:
   version "1.1.7"
@@ -4212,9 +4212,9 @@ pkg-dir@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-popper.js@^1.12.8:
-  version "1.12.8"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.8.tgz#b59b57473621feaf03726e1abe7c17c4b23c8564"
+popper.js@1.12.9:
+  version "1.12.9"
+  resolved "https://registry.npmjs.org/popper.js/-/popper.js-1.12.9.tgz#0dfbc2dff96c451bb332edcfcfaaf566d331d5b3"
 
 portfinder@^1.0.9:
   version "1.0.13"
