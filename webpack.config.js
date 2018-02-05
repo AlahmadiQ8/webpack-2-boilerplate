@@ -23,7 +23,8 @@ const {
 
 const path = require('path')
 const autoprefixer = require('autoprefixer')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 module.exports = createConfig([
@@ -56,6 +57,10 @@ module.exports = createConfig([
       Tether: 'tether',
       Popper: 'popper.js',
     }),
+    new CopyWebpackPlugin([{
+      from: './src/assets',
+      to: path.resolve(__dirname, 'build/assets')
+    }])
   ]),
   env('development', [
     devServer(),
