@@ -3,6 +3,9 @@ const postcssPresetEnv = require('postcss-preset-env')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -37,7 +40,19 @@ module.exports = {
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin({ filename: '[hash].bundle.css' })],
+  plugins: [
+    new CleanWebpackPlugin('build', {
+      root: process.cwd(),
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Mohammad Alahmadi',
+      template: './index.html',
+    }),
+    new CompressionPlugin({
+      test: /\.(js|css)$/,
+    }),
+    new MiniCssExtractPlugin({ filename: '[hash].bundle.css' }),
+  ],
   optimization: {
     minimize: true,
     minimizer: [
