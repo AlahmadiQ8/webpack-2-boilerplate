@@ -1,5 +1,9 @@
-.testing-omg {
-  background-color: pink;
-  display: flex;
-  flex-direction: column;
+@import './bootstrap';
+
+h1, .h1 {
+  font-family: 'Erica One', 'Montserrat', $font-family-sans-serif;
+}
+
+.jumbotron__badge { 
+  background-color:  color("orange");
 }
