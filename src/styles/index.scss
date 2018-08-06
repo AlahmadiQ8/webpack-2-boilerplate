@@ -1,9 +1,39 @@
 @import './bootstrap';
 
-h1, .h1 {
+h1,
+.h1 {
   font-family: 'Erica One', 'Montserrat', $font-family-sans-serif;
+  letter-spacing: 1px;
 }
 
-.jumbotron__badge { 
-  background-color:  color("orange");
+.jumbotron__badge {
+  background-color: color('orange');
+}
+
+.card {
+  border-radius: 0;
+  margin-bottom: 30px;
+  @include hover {
+    background-color: #fff;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+.card-body {
+  padding: 1.75rem 1.25rem;
+  text-decoration: none;
+}
+.card-title {
+  font-family: 'Erica One', 'Montserrat', $font-family-sans-serif;
+  letter-spacing: 1px;
+  font-size: 2rem;
+}
+.card-text {
+  color: $text-muted !important;
+}
+.card-text,
+.card-title {
+  & > span {
+    display: inline-block;
+    text-decoration: none;
+  }
 }
