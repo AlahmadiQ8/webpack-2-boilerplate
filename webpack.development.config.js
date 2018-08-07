@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const postcssPresetEnv = require('postcss-preset-env')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -40,6 +41,12 @@ module.exports = {
       title: 'Mohammad Alahmadi',
       template: './index.html',
     }),
+    new CopyWebpackPlugin([
+      {
+        from: './src/assets',
+        to: path.resolve(__dirname, 'build/assets'),
+      },
+    ]),
   ],
   devtool: 'eval',
   devServer: {

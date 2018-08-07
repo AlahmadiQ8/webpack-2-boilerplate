@@ -5,9 +5,12 @@ h1,
   font-family: 'Erica One', 'Montserrat', $font-family-sans-serif;
   letter-spacing: 1px;
 }
-
+.jumbotron {
+  background: rgb(140,99,205);
+  background: linear-gradient(90deg, rgba(140,99,205,1) 47%, rgba(221,156,250,1) 100%);
+}
 .jumbotron__badge {
-  background-color: color('orange');
+  background-color: color('yellow');
 }
 
 .card {

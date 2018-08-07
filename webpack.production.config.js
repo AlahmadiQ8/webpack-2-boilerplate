@@ -6,6 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -52,6 +53,12 @@ module.exports = {
       test: /\.(js|css)$/,
     }),
     new MiniCssExtractPlugin({ filename: '[hash].bundle.css' }),
+    new CopyWebpackPlugin([
+      {
+        from: './src/assets',
+        to: path.resolve(__dirname, 'build/assets'),
+      },
+    ]),
   ],
   optimization: {
     minimize: true,
