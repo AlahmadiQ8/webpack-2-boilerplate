@@ -8,3 +8,13 @@ $orange: #F27132;
 $purple: #F27132;
 $headings-color: #495057;
 $text-muted: #b3b3b3;
+
+$spacers: map-merge((
+  6: ($spacer * 4),
+  7: ($spacer * 5),
+  8: ($spacer * 6),
+  9: ($spacer * 7),
+  10: ($spacer * 9),
+  11: ($spacer * 11),
+  12: ($spacer * 13),
+), $spacers);
