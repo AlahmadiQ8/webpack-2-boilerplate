@@ -5,7 +5,6 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
@@ -48,9 +47,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Mohammad Alahmadi',
       template: './index.html',
-    }),
-    new CompressionPlugin({
-      test: /\.(js|css)$/,
     }),
     new MiniCssExtractPlugin({ filename: '[hash].bundle.css' }),
     new CopyWebpackPlugin([
