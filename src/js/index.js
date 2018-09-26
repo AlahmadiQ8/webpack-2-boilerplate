@@ -1,2 +1,3 @@
-require('bootstrap');
-import '../styles/index.scss';
+import '../styles/index.scss'
+
+console.log('omg omg omg')
