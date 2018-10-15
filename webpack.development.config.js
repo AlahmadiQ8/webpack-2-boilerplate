@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const postcssPresetEnv = require('postcss-preset-env')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -37,6 +38,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin('build', {
+      root: process.cwd(),
+    }),
     new HtmlWebpackPlugin({
       title: 'Mohammad Alahmadi',
       template: './index.html',

@@ -9,6 +9,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'production',
+  // Avoid inline-*** and eval-*** use in production as they can increase bundle size and reduce the overall performance.
+  devtool: 'source-map',
   entry: './src/js/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -58,6 +60,9 @@ module.exports = {
   ],
   optimization: {
     minimize: true,
+    splitChunks: {
+      chunks: 'all',
+    },
     minimizer: [
       new UglifyJsPlugin({
         cache: true,
@@ -67,5 +72,4 @@ module.exports = {
       new OptimizeCSSAssetsPlugin({}),
     ],
   },
-  devtool: 'eval',
 }
