@@ -4,10 +4,10 @@
   "description": "basic webpack configuration",
   "main": "index.js",
   "scripts": {
-    "clear": "rm -rf build",
+    "clear": "rm -rf prod",
     "start": "NODE_ENV=development webpack-dev-server --config webpack.development.config.js",
     "dev:compile": "NODE_ENV=development webpack --mode=development --config webpack.development.config.js",
-    "build": "NODE_ENV=production webpack --config webpack.production.config.js"
+    "prod": "NODE_ENV=production webpack --config webpack.production.config.js"
   },
   "keywords": [],
   "author": "Mohammad Alahmadis",
@@ -30,7 +30,8 @@
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.16.4",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.4"
   },
   "dependencies": {
     "bootstrap": "^4.1.3"

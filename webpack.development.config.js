@@ -8,7 +8,7 @@ module.exports = {
   mode: 'development',
   entry: './src/js/index.js',
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[hash].bundle.js',
   },
   module: {
@@ -38,7 +38,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin('build', {
+    new CleanWebpackPlugin('dist', {
       root: process.cwd(),
     }),
     new HtmlWebpackPlugin({
@@ -48,13 +48,13 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: './src/assets',
-        to: path.resolve(__dirname, 'build/assets'),
+        to: path.resolve(__dirname, 'dist/assets'),
       },
     ]),
   ],
   devtool: 'eval',
   devServer: {
-    contentBase: path.join(__dirname, 'build'),
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
     overlay: true,
