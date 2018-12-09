@@ -10,6 +10,8 @@
     "prod": "npm run webpack -- --env.mode production",
     "dev": "npm run webpack-dev-server -- --env.mode development --hot",
     "prod:typescript": "npm run prod -- --env.presets typescript",
+    "dev:typescript": "npm run webpack-dev-server -- --env.presets typescript --env.mode development --hot",
+    "dev:compile:typescript": "npm run webpack -- --env.presets typescript --env.mode development",
     "prod:debug": "npm run debug -- --env.mode production",
     "dev:debug": "npm run debug -- --env.mode development",
     "dev:compile": "npm run webpack -- --env.mode development"
@@ -35,6 +37,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.2.2",
+    "typescript": "^3.2.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.16.4",

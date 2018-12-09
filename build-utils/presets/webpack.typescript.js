@@ -2,10 +2,10 @@ const webpackMerge = require('webpack-merge')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 module.exports = env => {
+  console.log('omg omg \n\n')
   return webpackMerge(
-    // A presets common configuration details
     {
-      target: 'node',
+      entry: './src/index.ts',
       resolve: {
         extensions: ['.ts', '.tsx', '.wasm', '.mjs', '.js', '.json'],
       },

@@ -30,18 +30,4 @@ module.exports = () => ({
     ],
   },
   plugins: [new MiniCssExtractPlugin({ filename: '[hash].bundle.css' })],
-  optimization: {
-    minimize: true,
-    splitChunks: {
-      chunks: 'all',
-    },
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
-  },
 })
