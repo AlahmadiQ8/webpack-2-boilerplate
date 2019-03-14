@@ -1,20 +1,97 @@
 // Colors
-$blue:   #9CACFA;
-$yellow: #F5C04D;
-$orange: #F27132;
-$purple: #F27132;
-$headings-color: #495057;
-$text-muted: #b3b3b3;
+$blue: #4b6cb7;
+$indigo: #182848;
+$purple: #6f42c1;
+$purpleLight: #a797c5;
+$pink: #d22d72;
+$red: #d22d72;
+$orange: #ffa91b;
+$yellow: #ffa91b;
+$green: #52ecc7;
+$teal: #52ecc7;
+$cyan: #52ecc7;
 
-$spacers: map-merge((
-  6: ($spacer * 4),
-  7: ($spacer * 5),
-  8: ($spacer * 6),
-  9: ($spacer * 7),
-  10: ($spacer * 9),
-  11: ($spacer * 11),
-  12: ($spacer * 13),
-), $spacers);
+$my-colors: (
+  'blue': $blue,
+  'indigo': $indigo,
+  'purple': $purple,
+  'purpleLight': $purpleLight,
+  'pink': $pink,
+  'red': $red,
+  'orange': $orange,
+  'yellow': $yellow,
+  'green': $green,
+  'teal': $teal,
+  'cyan': $cyan
+);
+
+$colors: map-merge(
+  $colors,
+  (
+    'blue': $blue,
+    'indigo': $indigo,
+    'purple': $purple,
+    'purpleLight': $purpleLight,
+    'pink': $pink,
+    'red': $red,
+    'orange': $orange,
+    'yellow': $yellow,
+    'green': $green,
+    'teal': $teal,
+    'cyan': $cyan
+  )
+);
+
+// $theme-colors: map-merge(
+//   $theme-colors,
+//   (
+//     "primary":    $indigo,
+//     // "secondary":  $secondary,
+//     // "success":    $success,
+//     // "info":       $info,
+//     // "warning":    $warning,
+//     // "danger":     $danger,
+//     // "light":      $light,
+//     // "dark":       $dark
+//   ),
+// );
+
+@debug $theme-colors;
+
+$spacers: map-merge(
+  (
+    'half': (
+      $spacer * 0.2
+    ),
+    6: (
+      $spacer * 4
+    ),
+    7: (
+      $spacer * 5
+    ),
+    8: (
+      $spacer * 6
+    ),
+    9: (
+      $spacer * 7
+    ),
+    10: (
+      $spacer * 9
+    ),
+    11: (
+      $spacer * 11
+    ),
+    12: (
+      $spacer * 13
+    )
+  ),
+  $spacers
+);
+
+$link-color: color('blue');
+$link-decoration: none;
+$link-hover-decoration: none;
 
 $enable-deprecation-messages: true;
 $enable-responsive-font-sizes: true;
+$enable-gradients: true;

@@ -1,3 +1,3 @@
-import '../styles/index.scss'
+import '../styles/index.scss';
 
-console.log('omg omg omg')
+console.log('omg omg omg');

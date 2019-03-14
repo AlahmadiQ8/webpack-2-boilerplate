@@ -1,123 +1,64 @@
 @import './bootstrap';
 
-.container-fluid {
-  @include media-breakpoint-down(sm) {
-    padding-left: 0;
-    padding-right: 0;
-  } 
-}
 
-h1,
-.h1 {
-  font-family: 'Erica One', 'Montserrat', $font-family-sans-serif;
-  letter-spacing: 1px;
-}
-.jumbotron {
-  background: #584866;
-}
-.jumbotron__title {
-  font-size: 3rem;
-  @include media-breakpoint-up(sm) {
-    font-size: 3.5rem;
-  }
-}
-.jumbotron__icongroup {
-  max-width: 250px;
-  justify-content: center;
-}
-.jumbotron__btn {
-  padding: .5rem .5rem;
-  border: none;
-  font-weight: bold;
-  color: white;
-  background-color: lighten(color('orange'), 10%);
-  transition: $btn-transition;
-  &:hover {
-    background-color: color('orange');
-  }
-  &:focus {
-    box-shadow: none;
-    outline: none;
-  }
-  svg {
-    vertical-align: text-bottom;
-    width: 30px;
-    height: 30px;
-    fill: white;
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .vh-100#{$infix}   { height: 100vh !important; }
+    .sticky-top#{$infix} {
+      @supports (position: sticky) {
+        position: sticky;
+        top: 0;
+        z-index: $zindex-sticky;
+      }
+    }
+    .small#{$infix} {
+      @include font-size($small-font-size);
+      font-weight: $font-weight-normal;
+    }
   }
 }
 
-.home-main {
-  border-bottom: 1px solid gray("400");
-}
+@each $color, $value in $my-colors {
+  @include bg-variant(".bg-#{$color}", $value);
+  @include bg-gradient-variant(".bg-gradient-#{$color}", $value);
+  @include text-emphasis-variant(".text-#{$color}", $value);
 
-.card {
-  flex: 1;
-  border-radius: 0;
-  margin-bottom: 30px;
-  @include media-breakpoint-down(sm) {
-    margin-bottom: 0;
-  }
-  @include hover {
-    background-color: #fff;
-    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
-  }
-}
-.card-body {
-  padding: 1.75rem 1.25rem;
-  text-decoration: none;
-  svg {
-    max-width: 100px;
-  }
-  @include media-breakpoint-down(sm) {
-    padding: 1.25rem 0.5rem;
-  }
-}
-.card-title {
-  font-family: 'Erica One', 'Montserrat', $font-family-sans-serif;
-  letter-spacing: 1px;
-  font-size: 2rem;
-  margin-bottom: 0;
-}
-.card-text {
-  color: $text-muted !important;
-}
-.card-text,
-.card-title {
-  & > span {
-    display: inline-block;
-    text-decoration: none;
-  }
-  @include media-breakpoint-down(lg) {
-    font-size: 1.7rem;
-  }
-  @include media-breakpoint-down(md) {
-    font-size: 1.5rem;
-  }
-  @include media-breakpoint-down(sm) {
-    font-size: 1rem;
-  }
-  @include media-breakpoint-down(xs) {
-    font-size: 0.75rem;
-    font-family: $font-family-base;
+  .border-#{$color} {
+    border-color: $value !important;
   }
 }
 
-.content {
-  padding: 45px 46px;
-  border: 1px solid #e9e5e5;
-  @include media-breakpoint-down(sm) {
-    border: none;
-    padding: 30px 30px;
-  }
-}
-.contentWrapper {
-  padding: 32px 0 0 28px;
-  background: url(/assets/bg-content.png) no-repeat left top;
-  @include media-breakpoint-down(sm) {
-    font-size: 1rem;
-    padding: 0;
+@each $size, $length in $spacers {
+  .border-w-#{$size} {
+    border-width: $length !important;
   }
 }
 
+.border-dashed {
+  border-style: dashed !important;
+}
 
+.social-icon {
+  width: 30px;
+  height: auto;
+  fill: currentColor;
+}
+
+.border-none {
+  border: none !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+.list-group-item {
+  &.text-active {
+    color: color("green") !important;
+  }
+  a {
+    color: inherit;
+  }
+}
