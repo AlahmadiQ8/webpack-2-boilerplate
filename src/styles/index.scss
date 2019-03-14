@@ -37,15 +37,18 @@
 }
 
 aside {
+  background: linear-gradient(150deg,#182848,#4B6CB7);
+  p {
+    color: #8692FF;
+  }
   @include media-breakpoint-up(md) {
+    width: 22rem;
+    flex-shrink: 0;
+  }
+  @include media-breakpoint-up(lg) {
     width: 25rem;
     flex-shrink: 0;
   }
-}
-main {
-  // @include media-breakpoint-up(md) {
-  //   margin-left: 18rem;
-  // }
 }
 
 .border-dashed {
@@ -73,4 +76,9 @@ main {
   a {
     color: inherit;
   }
+}
+
+.nav-item {
+  padding-left: 0;
+  padding-right: 0;
 }
