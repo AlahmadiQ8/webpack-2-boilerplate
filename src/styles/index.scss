@@ -36,6 +36,18 @@
   }
 }
 
+aside {
+  @include media-breakpoint-up(md) {
+    width: 25rem;
+    flex-shrink: 0;
+  }
+}
+main {
+  // @include media-breakpoint-up(md) {
+  //   margin-left: 18rem;
+  // }
+}
+
 .border-dashed {
   border-style: dashed !important;
 }
