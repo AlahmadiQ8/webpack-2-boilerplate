@@ -1,12 +1,12 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const postcssPresetEnv = require('postcss-preset-env')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = () => ({
   devtool: 'source-map',
   output: {
-    filename: '[chunkhash].js',
+    filename: '[chunkhash].js'
   },
   module: {
     rules: [
@@ -19,15 +19,21 @@ module.exports = () => ({
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: () => [
-                postcssPresetEnv({ browsers: 'last 2 versions' }),
-              ],
-            },
+              plugins: () => [postcssPresetEnv({ browsers: 'last 2 versions' })]
+            }
           },
-          'sass-loader',
-        ],
-      },
-    ],
+          'sass-loader'
+        ]
+      }
+    ]
   },
   plugins: [new MiniCssExtractPlugin({ filename: '[hash].bundle.css' })],
-})
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        sourceMap: true // Must be set to true if using source-maps in production
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  }
+});
