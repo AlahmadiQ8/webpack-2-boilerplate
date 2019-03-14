@@ -1,13 +1,13 @@
-const webpackMerge = require('webpack-merge')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const webpackMerge = require("webpack-merge");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 module.exports = env => {
-  console.log('omg omg \n\n')
+  console.log("omg omg \n\n");
   return webpackMerge(
     {
-      entry: './src/index.ts',
+      entry: "./src/js/index.ts",
       resolve: {
-        extensions: ['.ts', '.tsx', '.wasm', '.mjs', '.js', '.json'],
+        extensions: [".ts", ".tsx", ".wasm", ".mjs", ".js", ".json"]
       },
       module: {
         rules: [
@@ -15,18 +15,18 @@ module.exports = env => {
             test: /\.tsx?/,
             use: [
               {
-                loader: 'ts-loader',
+                loader: "ts-loader",
                 options: {
-                  transpileOnly: true,
-                },
-              },
-            ],
-          },
-        ],
+                  transpileOnly: true
+                }
+              }
+            ]
+          }
+        ]
       },
-      plugins: [new ForkTsCheckerWebpackPlugin()],
+      plugins: [new ForkTsCheckerWebpackPlugin()]
     },
     // Any mode specific capabilities for that preset
     { production: {}, development: {} }[env.mode]
-  )
-}
+  );
+};
