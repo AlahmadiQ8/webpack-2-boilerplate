@@ -1,5 +1,6 @@
 // Colors
 $blue: #4b6cb7;
+$blueLight: #76a0ff;
 $indigo: #182848;
 $purple: #6f42c1;
 $purpleLight: #a797c5;
@@ -13,6 +14,7 @@ $cyan: #52ecc7;
 
 $my-colors: (
   'blue': $blue,
+  'blueLight': $blueLight,
   'indigo': $indigo,
   'purple': $purple,
   'purpleLight': $purpleLight,
@@ -29,6 +31,7 @@ $colors: map-merge(
   $colors,
   (
     'blue': $blue,
+    'blueLight': $blueLight,
     'indigo': $indigo,
     'purple': $purple,
     'purpleLight': $purpleLight,

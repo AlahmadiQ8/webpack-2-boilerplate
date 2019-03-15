@@ -36,12 +36,27 @@
   }
 }
 
+aside {
+  background: linear-gradient(150deg,#182848,#4B6CB7);
+  p {
+    color: #8692FF;
+  }
+  @include media-breakpoint-up(md) {
+    width: 22rem;
+    flex-shrink: 0;
+  }
+  @include media-breakpoint-up(lg) {
+    width: 25rem;
+    flex-shrink: 0;
+  }
+}
+
 .border-dashed {
   border-style: dashed !important;
 }
 
 .social-icon {
-  width: 30px;
+  width: 40px;
   height: auto;
   fill: currentColor;
 }
@@ -61,4 +76,9 @@
   a {
     color: inherit;
   }
+}
+
+.nav-item {
+  padding-left: 0;
+  padding-right: 0;
 }
