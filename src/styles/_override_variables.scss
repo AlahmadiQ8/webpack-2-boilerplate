@@ -2,15 +2,16 @@
 $blue: #4b6cb7;
 $blueLight: #76a0ff;
 $indigo: #182848;
-$purple: #6f42c1;
+$purple: #7972CE;
 $purpleLight: #a797c5;
 $pink: #d22d72;
 $red: #d22d72;
 $orange: #ffa91b;
 $yellow: #ffa91b;
-$green: #52ecc7;
+$green: #159957;
 $teal: #52ecc7;
 $cyan: #52ecc7;
+$grayLight: #EFF3F6;
 
 $my-colors: (
   'blue': $blue,
@@ -24,7 +25,8 @@ $my-colors: (
   'yellow': $yellow,
   'green': $green,
   'teal': $teal,
-  'cyan': $cyan
+  'cyan': $cyan,
+  'grayLight': $grayLight
 );
 
 $colors: map-merge(
@@ -41,7 +43,8 @@ $colors: map-merge(
     'yellow': $yellow,
     'green': $green,
     'teal': $teal,
-    'cyan': $cyan
+    'cyan': $cyan,
+    'grayLight': $grayLight
   )
 );
 
@@ -58,8 +61,6 @@ $colors: map-merge(
 //     // "dark":       $dark
 //   ),
 // );
-
-@debug $theme-colors;
 
 $spacers: map-merge(
   (
@@ -91,8 +92,11 @@ $spacers: map-merge(
   $spacers
 );
 
-$link-color: color('blue');
+$font-family-cursive: 'Averia Libre', cursive;
+
+$link-color: lighten(color('red'), 10%);
 $link-decoration: none;
+$link-hover-color: darken($link-color, 10%);
 $link-hover-decoration: none;
 
 $enable-deprecation-messages: true;

@@ -28,6 +28,10 @@
   .border-#{$color} {
     border-color: $value !important;
   }
+
+  .badge-#{$color} {
+    @include badge-variant($value);
+  }  
 }
 
 @each $size, $length in $spacers {
@@ -46,7 +50,7 @@ aside {
     flex-shrink: 0;
   }
   @include media-breakpoint-up(lg) {
-    width: 25rem;
+    width: 23rem;
     flex-shrink: 0;
   }
 }
@@ -56,9 +60,16 @@ aside {
 }
 
 .social-icon {
-  width: 40px;
+  width: 30px;
   height: auto;
   fill: currentColor;
+  @include media-breakpoint-up(sm) {
+    width: 40px;
+  }
+}
+.social-icon.post {
+  width: auto;
+  height: 30px;
 }
 
 .border-none {
@@ -71,7 +82,7 @@ aside {
 
 .list-group-item {
   &.text-active {
-    color: color("green") !important;
+    color: color("cyan") !important;
   }
   a {
     color: inherit;
@@ -81,4 +92,85 @@ aside {
 .nav-item {
   padding-left: 0;
   padding-right: 0;
+}
+
+.cursive {
+  font-family: $font-family-cursive;
+  letter-spacing: 1.23;
+}
+
+main {
+  max-width: $spacer * 50;
+  line-height: 1.5;
+  h1 {
+    font-family: $font-family-cursive;
+    color: $purple;
+    font-weight: 700;
+    margin-bottom: 1.2 * $spacer;
+  }
+  h3 {
+    font-family: $font-family-cursive;
+  }
+  h2 {
+    font-family: $font-family-cursive;
+    color: $green;
+    margin-bottom: 1.2 * $spacer;
+    font-weight: 300;
+  }
+  ul {
+    padding-left: $spacer * 1.2;
+  }
+  a {
+    border-bottom: 2px solid #EFF3F6;
+  }
+}
+
+.post-entry {
+  margin-bottom: 1 * $spacer;
+  background-color: #f2f5f7;
+  padding: 1 * $spacer;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.tags {
+  color: color('purpleLight');
+}
+.tag-meta {
+  color: gray('500');
+}
+.tag-meta, .tags {
+  font-size: $small-font-size;
+  svg {
+    display: inline-block;
+    vertical-align: text-bottom;
+    fill: currentColor;
+    margin-right: 3px;
+    height: 16px;
+  }
+}
+
+.badge {
+  padding: .3rem;
+  font-weight: 400;
+  background-color: unset;
+  color: lighten(color('purpleLight'), 0);
+  border: 1px solid lighten(color('purpleLight'), 0);;
+  &:hover {
+    color: color('purple');
+    border: 1px solid color('purple');
+  }
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  grid-gap: $spacer; 
+  &__item {
+    padding: 1 * $spacer;
+    background-color: #f2f5f7;
+    // height: 200px;
+    color: gray('600');
+  }
 }
